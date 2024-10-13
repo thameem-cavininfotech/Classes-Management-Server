@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
+import route from "./routes/classRoutes.js";
 
 const app = express();
 app.use(bodyParser.json());
@@ -14,8 +15,10 @@ mongoose
   .connect(MONGOURL)
   .then(() => {
     console.log("Database connected successfully.");
-    app.listen(PORT,() => {
+    app.listen(PORT, () => {
       console.log(`Server is running on PORT ${PORT}`);
     });
   })
   .catch((err) => console.error(err));
+
+app.use("/api/class", route);
