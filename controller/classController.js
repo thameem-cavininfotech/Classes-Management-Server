@@ -27,7 +27,8 @@ export const getAllClasses = async (req, res) => {
   try {
     const classData = await Class.find();
     if (classData.length === 0)
-      return res.status(404).json({ message: "Class Not Found." });
+        return res.status(200).json([])
+    //   return res.status(404).json({ message: "Class Not Found." });
     res.status(200).json(classData);
   } catch {
     res.status(500).json({ error: "Internal server error." });
